@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Banking System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Register</h3>
+                        <form th:action="@{/web/auth/register}" th:object="${customer}" method="post" enctype="multipart/form-data">
+                            <div th:if="${error}" class="alert alert-danger" role="alert">
+                                <span th:text="${error}">Error</span>
+                            </div>
+                            <div th:if="${message}" class="alert alert-success" role="alert">
+                                <span th:text="${message}">Message</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" th:field="*{name}" required minlength="5">
+                                <div class="invalid-feedback">Name is mandatory and must be at least 5 characters long.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" th:field="*{address}" required minlength="10">
+                                <div class="invalid-feedback">Address is mandatory and must be at least 10 characters long.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" th:field="*{city}" required>
+                                <div class="invalid-feedback">City is mandatory.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" th:field="*{password}" required minlength="8">
+                                <div class="invalid-feedback">Password is mandatory and must be at least 8 characters long.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="profilePhoto" class="form-label">Profile Photo</label>
+                                <input type="file" class="form-control" id="profilePhoto" name="profilePhoto" accept="image/*">
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

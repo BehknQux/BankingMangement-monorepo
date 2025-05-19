@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title>Create Customer</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h2>Create New Customer</h2>
+        <form th:action="@{/web/customers/create}" th:object="${customer}" method="post" enctype="multipart/form-data" class="col-md-6" id="customerForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" required minlength="5">
+                <div class="invalid-feedback">Name must be at least 5 characters long.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" th:field="*{address}" required minlength="10">
+                <div class="invalid-feedback">Address must be at least 10 characters long.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" th:field="*{city}" required>
+                <div class="invalid-feedback">City is required.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="profilePhoto" class="form-label">Profile Photo</label>
+                <input type="file" class="form-control" id="profilePhoto" name="profilePhoto" accept="image/*">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}" required minlength="8">
+                <div class="invalid-feedback">Password must be at least 8 characters long.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" th:field="*{role}" required>
+                    <option th:each="role : ${T(com.swe212.model.Role).values()}"
+                            th:value="${role}"
+                            th:text="${role}">
+                    </option>
+                </select>
+                <div class="invalid-feedback">Role is required.</div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a th:href="@{/web/customers}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('customerForm').addEventListener('submit', function(event) {
+            let isValid = true;
+            const name = document.getElementById('name');
+            const address = document.getElementById('address');
+            const password = document.getElementById('password');
+
+            // Name validation
+            if (name.value.length < 5) {
+                name.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                name.classList.remove('is-invalid');
+            }
+
+            // Address validation
+            if (address.value.length < 10) {
+                address.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                address.classList.remove('is-invalid');
+            }
+
+            // Password validation
+            if (password.value.length < 8) {
+                password.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                password.classList.remove('is-invalid');
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</div>
+</body>
+</html>

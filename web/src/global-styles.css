@@ -1,0 +1,377 @@
+/* Global Styles for Modern Look and Feel */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, professional font */
+  background-color: #f8f9fa; /* Light, clean background */
+  color: #343a40; /* Dark, readable text */
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600; /* Slightly bolder headings */
+  color: #212529; /* Darker headings for emphasis */
+}
+
+a {
+  color: #007bff; /* Standard link color, can be customized */
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #0056b3; /* Darker link color on hover */
+}
+
+.container, .container-fluid {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Add more global styles below as needed */
+
+/* Navbar Modernization */
+.navbar.bg-primary {
+  background-color: #ffffff !important; /* Override Bootstrap's primary with a light color */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important; /* Softer, more modern shadow */
+}
+
+.navbar-brand {
+  font-size: 1.75rem; /* Larger brand name */
+  font-weight: 700; /* Bolder brand name */
+  color: #343a40 !important; /* Darker brand text for light background */
+}
+
+.navbar .btn-outline-light {
+  border-color: #6c757d; /* Slightly darker border for better contrast on white */
+  color: #495057; /* Darker text for buttons */
+  font-weight: 500;
+  border-radius: 0.375rem; /* Consistent border-radius with Bootstrap 5 */
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover,
+.navbar .btn-outline-light.active {
+  background-color: #007bff; /* Primary color for active/hover state */
+  color: #ffffff !important; /* White text for active/hover */
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.navbar .btn-group .btn {
+  margin-left: 0.5rem; /* Add some space between buttons */
+}
+
+.navbar .btn-group .btn:first-child {
+  margin-left: 0; /* No margin for the first button */
+}
+
+/* Main Content Area */
+main.container {
+  padding-top: 2.5rem; /* Slightly more padding */
+  padding-bottom: 2.5rem;
+}
+
+/* Footer Modernization */
+footer.bg-dark {
+  background-color: #e9ecef !important; /* Lighter footer background */
+  color: #495057 !important; /* Darker text for light footer */
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-top: 1px solid #dee2e6; /* Subtle top border */
+}
+
+footer.bg-dark p {
+  font-size: 0.9rem;
+}
+
+/* Modern Table Styles */
+.table {
+  background-color: #ffffff; /* White background for tables */
+  border-radius: 0.5rem; /* Rounded corners for the table container */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+  overflow: hidden; /* Ensures box-shadow and border-radius apply correctly to child elements like thead */
+}
+
+.table thead th {
+  background-color: #f8f9fa; /* Light grey background for table header */
+  color: #495057; /* Darker text for header */
+  font-weight: 600; /* Bolder header text */
+  border-bottom-width: 1px; /* Thinner border */
+  border-top: none !important; /* Remove default Bootstrap top border on th */
+  padding: 1rem 0.75rem;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+}
+
+.table tbody tr:hover {
+  background-color: #e9ecef; /* Hover effect for table rows */
+}
+
+.table td, .table th {
+  vertical-align: middle;
+  padding: 0.9rem 0.75rem; /* Consistent padding */
+  border-color: #dee2e6; /* Softer border color */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.025); /* Lighter stripe for striped tables */
+}
+
+/* Modern Form Control Styles */
+.form-control,
+.form-select {
+  border-radius: 0.375rem; /* Standard Bootstrap 5 radius */
+  border-color: #ced4da; /* Standard border color */
+  padding: 0.5rem 1rem; /* More comfortable padding */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  box-shadow: none; /* Remove default inner shadow on focus for some browsers */
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #86b7fe; /* Bootstrap's focus blue */
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Bootstrap's focus shadow */
+}
+
+/* Modern Button Styles (General - supplementing navbar buttons) */
+.btn {
+  border-radius: 0.375rem;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  box-shadow: 0 2px 4px rgba(108, 117, 125, 0.2);
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* Add more styles for other button types (success, danger, warning, info, light, dark) if needed */
+
+/* Card Modernization */
+.card {
+ border: none; /* Remove default card border */
+ border-radius: 0.75rem; /* More rounded corners */
+ box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Softer, more pronounced shadow */
+ margin-bottom: 1.5rem; /* Ensure spacing between cards */
+}
+
+.card-header {
+ background-color: #f8f9fa; /* Light header background */
+ border-bottom: 1px solid #e9ecef; /* Subtle border */
+ font-weight: 600;
+ padding: 1rem 1.25rem;
+ border-top-left-radius: 0.75rem;
+ border-top-right-radius: 0.75rem;
+}
+
+.card-body {
+ padding: 1.5rem; /* More padding in card body */
+}
+
+.card-title {
+ font-weight: 600;
+ margin-bottom: 0.75rem;
+}
+
+/* Table Action Buttons & Specific Column Styling */
+.table .btn-sm {
+  padding: 0.25rem 0.6rem; /* Smaller padding for sm buttons in tables */
+  font-size: 0.8em; /* Slightly smaller font for sm buttons */
+  margin-right: 0.25rem; /* Consistent right margin */
+}
+
+.table .btn-sm:last-child {
+  margin-right: 0;
+}
+
+/* Styling for buttons in 'actions' and 'Linked Customers' columns */
+.table td .btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+}
+.table td .btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.table td .btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+.table td .btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.table td .btn-outline-info {
+  border-color: #0dcaf0;
+  color: #0dcaf0;
+}
+.table td .btn-outline-info:hover {
+  background-color: #0dcaf0;
+  color: #000; /* Or a contrasting dark color */
+}
+
+.table td .btn-warning,
+.table td .btn-warning:hover {
+  color: #000; /* Ensure text is readable on warning yellow */
+  box-shadow: none; /* Remove general button shadow for a flatter look if desired */
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.375rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.page-item {
+  margin: 0 0.25rem;
+}
+
+.page-item .page-link {
+  position: relative;
+  display: block;
+  padding: 0.6rem 0.9rem;
+  color: #007bff; /* Bootstrap primary color */
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-radius: 0.375rem; /* Rounded corners for page links */
+}
+
+.page-item .page-link:hover {
+  z-index: 2;
+  color: #0056b3;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+/* For Next/Prev text, if you use them instead of arrows */
+.page-link .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Removing styles for the now-removed inline linked customer display */
+/*
+.linked-customers-container {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 0.4rem; 
+  align-items: center; 
+}
+
+.linked-customer-item {
+  display: flex; 
+  align-items: center;
+  background-color: #f8f9fa; 
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem; 
+  border: 1px solid #dee2e6;
+  font-size: 0.875em; 
+  line-height: 1.4;
+}
+
+.linked-customer-item .customer-name {
+  margin-right: 0.4rem;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px; 
+}
+
+.linked-customer-item .unlink-button.btn-sm {
+  padding: 0.15rem 0.4rem; 
+  font-size: 0.8em; 
+}
+
+.table td .btn-outline-warning {
+  border-color: #ffc107; 
+  color: #755f00; 
+  background-color: transparent;
+}
+
+.table td .btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #000; 
+  border-color: #ffc107;
+}
+
+.table td .btn-outline-warning:disabled,
+.table td .btn-outline-warning.disabled {
+  color: #adb5bd;
+  border-color: #dee2e6;
+  background-color: transparent;
+}
+*/
+
+/* View Customers Button in Table */
+.table td .view-customers-btn.btn-sm {
+  padding: 0.25rem 0.6rem;
+  /* font-size: 0.8em; already covered by .btn-sm in table */
+}
+
+/* Unlink Button inside View Customers Modal */
+.unlink-button-modal.btn-sm {
+  padding: 0.2rem 0.5rem; 
+  font-size: 0.85em;
+}
+
+/* Optional: Styling for the list within the View Customers Modal */
+#viewCustomersModal .list-group-item {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+#viewCustomersModal .list-group-item strong {
+  font-weight: 500; /* Slightly less bold than default strong for a cleaner look */
+} 

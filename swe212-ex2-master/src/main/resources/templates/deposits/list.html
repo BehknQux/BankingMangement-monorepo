@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title>Deposits</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Deposits</h2>
+                <a th:href="@{/web/deposits/transfer}" class="btn btn-primary">New Transfer</a>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Transaction Type</th>
+                                    <th>From Account</th>
+                                    <th>To Account</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="deposit : ${deposits.content}">
+                                    <td th:text="${#temporals.format(deposit.date, 'yyyy-MM-dd HH:mm')}">2025-04-24 00:00</td>
+                                    <td>$<span th:text="${#numbers.formatDecimal(deposit.amount, 0, 'COMMA', 2, 'POINT')}">0.00</span></td>
+                                    <td th:text="${deposit.transactionType}">TRANSFER</td>
+                                    <td th:text="${deposit.fromAccountId}">Branch A</td>
+                                    <td th:text="${deposit.toAccountId}">Branch B</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(deposits.content)}">
+                                    <td colspan="5" class="text-center">No deposits found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <nav th:if="${deposits.totalPages > 1}" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${deposits.number == 0} ? 'disabled'">
+                        <a class="page-link" th:href="@{/web/deposits(page=${deposits.number - 1})}">Previous</a>
+                    </li>
+                    <li class="page-item" th:each="i : ${#numbers.sequence(0, deposits.totalPages - 1)}" 
+                        th:classappend="${deposits.number == i} ? 'active'">
+                        <a class="page-link" th:href="@{/web/deposits(page=${i})}" th:text="${i + 1}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${deposits.number == deposits.totalPages - 1} ? 'disabled'">
+                        <a class="page-link" th:href="@{/web/deposits(page=${deposits.number + 1})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

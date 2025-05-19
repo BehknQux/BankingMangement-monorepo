@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title>Link Customer to Account</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">Link Customer to Account</h4>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/web/accounts/{accountId}/link(accountId=${accountId})}" method="post">
+                                <div class="mb-3">
+                                    <label for="customerId" class="form-label">Select Customer</label>
+                                    <select class="form-select" id="customerId" name="customerId" required>
+                                        <option value="">Choose a customer...</option>
+                                        <option th:each="customer : ${availableCustomers}"
+                                                th:value="${customer.id}"
+                                                th:text="${customer.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                                
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">Link Customer</button>
+                                    <a th:href="@{/web/accounts}" class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </form>
+
+                            <hr>
+
+                            <h5 class="mt-4">Currently Linked Customers</h5>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="customer : ${account.customers}">
+                                            <td th:text="${customer.name}">Customer Name</td>
+                                            <td>
+                                                <form th:action="@{/web/accounts/{accountId}/unlink/{customerId}(accountId=${accountId},customerId=${customer.id})}" 
+                                                      method="post" style="display: inline;">
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure you want to unlink this customer?')">
+                                                        Unlink
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr th:if="${#lists.isEmpty(account.customers)}">
+                                            <td colspan="2" class="text-center">No customers linked to this account</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

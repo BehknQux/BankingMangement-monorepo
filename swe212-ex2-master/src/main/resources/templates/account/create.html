@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title>Create Account</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">Create New Account</h4>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/web/accounts/create}" method="post" th:object="${accountCreateDto}">
+                                <div class="mb-3">
+                                    <label for="branch" class="form-label">Branch</label>
+                                    <input type="text" class="form-control" id="branch" th:field="*{branch}" required>
+                                    <div class="text-danger" th:if="${#fields.hasErrors('branch')}" th:errors="*{branch}"></div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="balance" class="form-label">Initial Balance</label>
+                                    <input type="number" class="form-control" id="balance" th:field="*{balance}" step="0.01" required>
+                                    <div class="text-danger" th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}"></div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="customerId" class="form-label">Customer</label>
+                                    <select class="form-select" id="customerId" th:field="*{customerId}" required>
+                                        <option value="">Select Customer</option>
+                                        <option th:each="customer : ${customers}"
+                                                th:value="${customer.id}"
+                                                th:text="${customer.name}">
+                                        </option>
+                                    </select>
+                                    <div class="text-danger" th:if="${#fields.hasErrors('customerId')}" th:errors="*{customerId}"></div>
+                                </div>
+                                
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">Create Account</button>
+                                    <a th:href="@{/web/accounts}" class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

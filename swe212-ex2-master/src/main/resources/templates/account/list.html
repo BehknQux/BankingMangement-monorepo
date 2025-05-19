@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title>Accounts</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Accounts</h2>
+                <a th:href="@{/web/accounts/create}" class="btn btn-primary">New Account</a>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Branch</th>
+                                    <th>Balance</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="account : ${accounts.content}">
+                                    <td th:text="${account.branch}">Branch Name</td>
+                                    <td>$<span th:text="${#numbers.formatDecimal(account.balance, 0, 'COMMA', 2, 'POINT')}">0.00</span></td>
+                                    <td>
+                                        <a th:href="@{/web/accounts/{id}/edit(id=${account.id})}" class="btn btn-sm btn-primary">Edit</a>
+                                        <a th:href="@{/web/accounts/{id}/link(id=${account.id})}" class="btn btn-sm btn-success">Link Customer</a>
+                                        <form th:action="@{/web/accounts/{id}/delete(id=${account.id})}" method="post" style="display: inline;">
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(accounts.content)}">
+                                    <td colspan="3" class="text-center">No accounts found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <nav th:if="${accounts.totalPages > 1}" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${accounts.number == 0} ? 'disabled'">
+                        <a class="page-link" th:href="@{/web/accounts(page=${accounts.number - 1})}">Previous</a>
+                    </li>
+                    <li class="page-item" th:each="i : ${#numbers.sequence(0, accounts.totalPages - 1)}" 
+                        th:classappend="${accounts.number == i} ? 'active'">
+                        <a class="page-link" th:href="@{/web/accounts(page=${i})}" th:text="${i + 1}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${accounts.number == accounts.totalPages - 1} ? 'disabled'">
+                        <a class="page-link" th:href="@{/web/accounts(page=${accounts.number + 1})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

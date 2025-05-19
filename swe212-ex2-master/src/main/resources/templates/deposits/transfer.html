@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title>New Transfer</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">New Transfer</h4>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/web/deposits/transfer}" th:object="${depositRequest}" method="post">
+                                <div class="mb-3">
+                                    <label for="fromAccountId" class="form-label">From Account</label>
+                                    <select class="form-select" id="fromAccountId" th:field="*{fromAccountId}" required>
+                                        <option value="">Select source account...</option>
+                                        <option th:each="account : ${accounts}"
+                                                th:value="${account.id}"
+                                                th:text="${account.branch + ' - $' + #numbers.formatDecimal(account.balance, 0, 'COMMA', 2, 'POINT')}">
+                                        </option>
+                                    </select>
+                                    <div class="text-danger" th:if="${#fields.hasErrors('fromAccountId')}" th:errors="*{fromAccountId}"></div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="toAccountId" class="form-label">To Account</label>
+                                    <select class="form-select" id="toAccountId" th:field="*{toAccountId}" required>
+                                        <option value="">Select target account...</option>
+                                        <option th:each="account : ${accounts}"
+                                                th:value="${account.id}"
+                                                th:text="${account.branch + ' - $' + #numbers.formatDecimal(account.balance, 0, 'COMMA', 2, 'POINT')}">
+                                        </option>
+                                    </select>
+                                    <div class="text-danger" th:if="${#fields.hasErrors('toAccountId')}" th:errors="*{toAccountId}"></div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="amount" class="form-label">Amount</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" step="0.01" class="form-control" id="amount" th:field="*{amount}" required>
+                                    </div>
+                                    <div class="text-danger" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></div>
+                                </div>
+                                
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">Transfer</button>
+                                    <a th:href="@{/web/deposits}" class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
