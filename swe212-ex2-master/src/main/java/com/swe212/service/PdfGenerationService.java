@@ -26,4 +26,4 @@ public class PdfGenerationService {
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }
-} 
+}

@@ -20,9 +20,9 @@ public class DepositController {
     private final DepositService depositService;
 
     @PostMapping("/transfer")
-    public ResponseEntity<Void> transfer(@RequestBody DepositRequestDto depositRequestDto) {
+    public ResponseEntity<String> transfer(@RequestBody DepositRequestDto depositRequestDto) {
         depositService.transfer(depositRequestDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("{Successfull}");
     }
 
     @GetMapping

@@ -334,5 +334,5 @@ public class DataInitializer {
                 log.info("Created fake data.");
             }
         };
-}
+    }
 }
